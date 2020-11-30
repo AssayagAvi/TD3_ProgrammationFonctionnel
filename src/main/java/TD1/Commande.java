@@ -8,6 +8,10 @@ import java.util.HashMap;
 
 
 public class Commande {
+
+    public String formatteurLigne(Paire<Produit, Integer> ligne) {
+        return String.format("%s x%d\n", ligne.fst(), ligne.snd());
+    }
     private List<Paire<Produit, Integer>> lignes;
 
     public Commande() {

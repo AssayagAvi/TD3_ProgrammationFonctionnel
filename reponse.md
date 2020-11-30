@@ -10,6 +10,7 @@ Voir code
 
 ###Question 3 
 Voici le code refactorer via l'API Stream sur l'exercice 4 du TD1
+vous pouvez le trouve au niveau du ficher App.java
 
     public static Predicate<Produit> produitaTVAReduite = p -> p.cat().equals(Categorie.REDUIT);
     public static Predicate<Produit> sup5Euros = p -> p.prix() > 5.0;

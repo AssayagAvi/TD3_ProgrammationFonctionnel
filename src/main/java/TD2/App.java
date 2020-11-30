@@ -10,6 +10,7 @@ import java.util.Set;
 import java.util.Map.Entry;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 import TD2.universite.Annee;
 import TD2.universite.Etudiant;
@@ -302,6 +303,18 @@ public class App {
         afficheSiv2("TOUS LES ETUDIANTS SOUS LA MOYENNE INDICATIVE", naPasLaMoyenneGeneralise.apply(moyenneIndicative),
                 a1, e -> String.format("%s %s : %.2f", e.prenom(), e.nom(), moyenneIndicative.apply(e)));
     }
+
+    // utilisation des Streams
+
+    // matières d'une année
+    public static final Function<Annee, Stream<Matiere>> matieresA = annee ->
+            annee.ues().stream().flatMap(ue -> ue.ects().keySet().stream());
+
+
+    // matières d'un étudiant
+    public static final Function<Etudiant, Stream<Matiere>> matieresE = etudiant ->
+            matieresA.apply(etudiant.annee());
+
 
     public static void main(String[] args) {
         question1_1();
