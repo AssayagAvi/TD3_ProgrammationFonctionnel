@@ -1,7 +1,9 @@
 package TD1;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.ArrayList;
@@ -60,6 +62,18 @@ public class DAO {
                 .collect(Collectors.toSet());
     }
 
+    public Set<Produit> produitsNoStream() {
+
+        Set<Produit> toutLesProduits = new HashSet<>();
+
+        for (Commande c : commandes) {
+            for (Paire<Produit, Integer> ligne : c.lignes()) {
+                toutLesProduits.add(ligne.fst());
+            }
+        }
+
+        return toutLesProduits;
+    }
     /**
      * liste des commandes vérifiant un prédicat
      */

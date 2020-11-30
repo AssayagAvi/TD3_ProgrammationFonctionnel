@@ -1,4 +1,4 @@
-package td2.universite;
+package TD2.universite;
 
 import java.util.HashSet;
 import java.util.Set;

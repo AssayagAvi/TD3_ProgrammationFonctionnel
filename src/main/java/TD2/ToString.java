@@ -1,4 +1,4 @@
-package td2;
+package TD2;
 
 @FunctionalInterface
 public interface ToString<T> {
