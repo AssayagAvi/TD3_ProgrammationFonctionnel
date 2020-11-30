@@ -89,13 +89,13 @@ public class DAO {
 
     public List<Commande> selectionCommandeNoStream(Predicate<Commande> p){
 
-    List<Commande> choix = new ArrayList<>();
+    List<Commande> choixCommande = new ArrayList<>();
         for(Commande c : commandes) {
             if (p.test(c)) {
-                choix.add(c);
+                choixCommande.add(c);
             }
         }
-        return choix;
+        return choixCommande;
 }
 
 
@@ -117,5 +117,15 @@ public class DAO {
             .filter(p)
             .collect(Collectors.toSet());
     }
-
+    public Set<Produit> selectionProduitsNoStream(Predicate<Produit> condition) {
+        Set<Produit> choixProduits = new HashSet<>();
+        for(Produit p : produits()) {
+            if(condition.test(p)) {
+                choixProduits.add(p);
+            }
+        }
+        return choixProduits;
+    }
 }
+
+
