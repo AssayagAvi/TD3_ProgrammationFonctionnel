@@ -17,7 +17,7 @@ import static TD1.Categorie.REDUIT;
 public class DAO {
     private List<Commande> commandes;
 
-    private DAO(Commande c1, Commande ...cs) {
+    private DAO(Commande c1, Commande... cs) {
         commandes = new ArrayList<>();
         commandes.add(c1);
         commandes.addAll(List.of(cs));
@@ -34,15 +34,15 @@ public class DAO {
             Produit tournevis = new Produit("Tournevis", 4.5, NORMAL);
             //
             Commande c1 = new Commande()
-                .ajouter(camembert, 1)
-                .ajouter(yaourts, 6);
+                    .ajouter(camembert, 1)
+                    .ajouter(yaourts, 6);
             Commande c2 = new Commande()
-                .ajouter(masques, 2)
-                .ajouter(gel, 10)
-                .ajouter(camembert, 2)
-                .ajouter(masques, 3);
+                    .ajouter(masques, 2)
+                    .ajouter(gel, 10)
+                    .ajouter(camembert, 2)
+                    .ajouter(masques, 3);
             //
-            instance = new DAO(c1,c2);
+            instance = new DAO(c1, c2);
         }
         return instance;
     }
@@ -50,7 +50,9 @@ public class DAO {
     /**
      * liste de toutes les commandes
      */
-    public List<Commande> commandes() { return commandes; }
+    public List<Commande> commandes() {
+        return commandes;
+    }
 
     /**
      * ensemble des différents produits commandés
@@ -74,14 +76,28 @@ public class DAO {
 
         return toutLesProduits;
     }
+
     /**
      * liste des commandes vérifiant un prédicat
      */
     public List<Commande> selectionCommande(Predicate<Commande> p) {
         return commandes.stream()
-            .filter(p)
-            .collect(Collectors.toList());
+                .filter(p)
+                .collect(Collectors.toList());
     }
+
+
+    public List<Commande> selectionCommandeNoStream(Predicate<Commande> p){
+
+    List<Commande> choix = new ArrayList<>();
+        for(Commande c : commandes) {
+            if (p.test(c)) {
+                choix.add(c);
+            }
+        }
+        return choix;
+}
+
 
     /**
      * liste des commandes dont au moins une ligne vérifie un prédicat
